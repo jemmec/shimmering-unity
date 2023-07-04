@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85d8db2a161f8040bea5a05fc72652b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comport: COM7
   tryConnect: 0
 --- !u!1 &963194225
 GameObject:

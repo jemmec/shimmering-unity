@@ -8,6 +8,9 @@ public class ShimmerConnectionTest : MonoBehaviour
 {
 
     [SerializeField]
+    private string comport = "COM8";
+
+    [SerializeField]
     private bool tryConnect = false;
 
     private void Update()
@@ -29,7 +32,7 @@ public class ShimmerConnectionTest : MonoBehaviour
         ShimmerBluetooth shimmer =
             new ShimmerLogAndStreamSystemSerialPort(
                 "ShimmerID`",
-                "COM11",
+                comport,
                 samplingRate,
                 0,
                 4,
