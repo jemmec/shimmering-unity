@@ -6,7 +6,17 @@ Shimmers3 integration into Unity.
 
 ## Usage
 
-TBD
+1. Download the latest [unity package]() from releases and import it into your unity project.
+
+2. Add the `ShimmerDevice` component to a GameObject in your scene (alternatively, open the `ExampleScene` scene).
+
+3. Setup configuration through the `ShimmerDevice` inspector, setting the COM port and Sampling rate to match your connected shimmer device.
+
+4. Run your project and test the connection with the [Connect] and [StartStreaming] buttons.
+
+5. (OPTIONAL) Add a `ShimmerDataLogger` component to the same GameObject. Add the `ShimmerDevice` as an inspector reference, and add some signals to the signals list (ensuring the signals are enabled on your device). Run your project again, after starting the streaming you should now see the signal values in the `ShimmerDataLogger` change.
+
+### Shimmer Data Reference
 
 #### Signal Names (Shimmer3)
 
