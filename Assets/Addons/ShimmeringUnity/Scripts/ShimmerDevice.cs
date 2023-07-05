@@ -4,6 +4,7 @@ using UnityEngine;
 using ShimmerAPI;
 using System;
 using System.Threading;
+using UnityEngine.Events;
 
 namespace ShimmeringUnity
 {
@@ -32,19 +33,23 @@ namespace ShimmeringUnity
         [SerializeField]
         private float samplingRate = 51.2f;
 
+        [SerializeField]
+        private ShimmerDeviceDataEvent onShimmerDataRecieved = new ShimmerDeviceDataEvent();
+        public ShimmerDeviceDataEvent OnShimmerDataRecieved => onShimmerDataRecieved;
+
+        //Private members
         private Thread shimmerThread = null;
 
         private ShimmerBluetooth shimmer;
 
         private int connectionCount;
 
-
         private void Update()
         {
             if (shimmerDataQueue.Count > 0)
             {
                 ObjectCluster objectCluster = shimmerDataQueue.Dequeue();
-                Debug.Log("MAIN: Shimmer Data Recieved ");
+                OnShimmerDataRecieved.Invoke(this, objectCluster);
             }
         }
 
@@ -59,12 +64,59 @@ namespace ShimmeringUnity
 
         public void Connect()
         {
-            if (shimmerThread == null &&
-                (CurrentState == ShimmerUnityState.None ||
+            if ((CurrentState == ShimmerUnityState.None ||
                 CurrentState == ShimmerUnityState.Disconnected))
             {
                 shimmerThread = new Thread(ConnectionThread);
                 shimmerThread.Start();
+            }
+        }
+
+        public void Disconnect()
+        {
+            if (CurrentState == ShimmerUnityState.Connected ||
+            CurrentState == ShimmerUnityState.Connecting ||
+            CurrentState == ShimmerUnityState.Streaming)
+            {
+                if (shimmer != null)
+                {
+                    //Must run in new thread
+                    new Thread(() =>
+                    {
+                        Thread.Sleep(500);
+                        shimmer.Disconnect();
+                    }).Start();
+                }
+            }
+        }
+
+        public void StartStreaming()
+        {
+            if (CurrentState == ShimmerUnityState.Connected)
+            {
+                if (shimmer != null)
+                {
+                    new Thread(() =>
+                    {
+                        Thread.Sleep(500);
+                        shimmer.StartStreaming();
+                    }).Start();
+                }
+            }
+        }
+
+        public void StopStreaming()
+        {
+            if (CurrentState == ShimmerUnityState.Streaming)
+            {
+                if (shimmer != null)
+                {
+                    new Thread(() =>
+                    {
+                        Thread.Sleep(500);
+                        shimmer.StopStreaming();
+                    }).Start();
+                }
             }
         }
 
@@ -114,12 +166,6 @@ namespace ShimmeringUnity
                     {
                         Debug.Log("THREAD: Connected " + connectionCount);
                         CurrentState = ShimmerUnityState.Connected;
-                        //Needs to be executed on a seperate thread, and a sleep to ensure everything on the current thread is completed
-                        new Thread(() =>
-                        {
-                            Thread.Sleep(500);
-                            shimmer.StartStreaming();
-                        }).Start();
 
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_CONNECTING)
@@ -131,13 +177,14 @@ namespace ShimmeringUnity
                     {
                         Debug.Log("THREAD: Disconnected " + connectionCount);
                         CurrentState = ShimmerUnityState.Disconnected;
-                        new Thread(() =>
-                        {
-                            //Retry after half a second
-                            Thread.Sleep(500);
-                            connectionCount += 1;
-                            shimmer.Connect();
-                        }).Start();
+                        //Auto reconnect on disconnect:
+                        // new Thread(() =>
+                        // {
+                        //     //Retry after half a second
+                        //     Thread.Sleep(500);
+                        //     connectionCount += 1;
+                        //     shimmer.Connect();
+                        // }).Start();
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_STREAMING)
                     {
@@ -157,4 +204,7 @@ namespace ShimmeringUnity
         #endregion
 
     }
+
+    public class ShimmerDeviceDataEvent : UnityEvent<ShimmerDevice, ObjectCluster> { }
+
 }
