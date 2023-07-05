@@ -34,8 +34,8 @@ namespace ShimmeringUnity
         private float samplingRate = 51.2f;
 
         [SerializeField]
-        private ShimmerDeviceDataEvent onShimmerDataRecieved = new ShimmerDeviceDataEvent();
-        public ShimmerDeviceDataEvent OnShimmerDataRecieved => onShimmerDataRecieved;
+        private DataRecievedEvent onDataRecieved = new DataRecievedEvent();
+        public DataRecievedEvent OnDataRecieved => onDataRecieved;
 
         //Private members
         private Thread shimmerThread = null;
@@ -55,7 +55,7 @@ namespace ShimmeringUnity
             if (shimmerDataQueue.Count > 0)
             {
                 ObjectCluster objectCluster = shimmerDataQueue.Dequeue();
-                OnShimmerDataRecieved.Invoke(this, objectCluster);
+                OnDataRecieved.Invoke(this, objectCluster);
             }
         }
 
@@ -212,6 +212,6 @@ namespace ShimmeringUnity
     }
 
     [System.Serializable]
-    public class ShimmerDeviceDataEvent : UnityEvent<ShimmerDevice, ObjectCluster> { }
+    public class DataRecievedEvent : UnityEvent<ShimmerDevice, ObjectCluster> { }
 
 }
