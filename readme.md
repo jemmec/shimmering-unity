@@ -1,6 +1,6 @@
 # Shimmering Unity
 
-Shimmers3 integration into Unity.
+Shimmer3 integration directly in Unity.
 
 > Tested with shimmer3 device on unity 2021.3.X (Use a different version with caution)
 
