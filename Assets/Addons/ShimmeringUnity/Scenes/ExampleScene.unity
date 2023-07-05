@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  shimmerID: S01
+  shimmerDeviceID: S01
   comPort: COM4
   samplingRate: 51.2
   tryConnect: 0
