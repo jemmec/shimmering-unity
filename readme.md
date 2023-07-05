@@ -31,6 +31,10 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
 1. Manual: https://shimmersensing.com/wp-content/docs/support/documentation/LogAndStream_for_Shimmer3_Firmware_User_Manual_rev0.11a.pdf
 2. User guide: https://shimmersensing.com/wp-content/docs/support/documentation/Consensys_User_Guide_rev1.6a.pdf
 
+## Lighting Indication
+![image](https://github.com/jemmec/shimmering-unity/assets/15023431/b65621bb-31c0-4846-b4d0-6b94c51f92a6)
+![image](https://github.com/jemmec/shimmering-unity/assets/15023431/11cbc5a6-003e-493f-91e9-30620cde09d2)
+
 ## Credits
 
 The [ShimmerAPI](https://github.com/ShimmerEngineering/Shimmer-C-API) was create by [Shimmer](https://shimmersensing.com/)
