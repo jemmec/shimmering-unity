@@ -107,15 +107,15 @@ NanoAmpere = "nA"
 
 ### Flashing shimmer to latest Log and Stream firmware
 https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consensys V1.6.0 (64bit)
-![image](https://github.com/jemmec/shimmering-unity/assets/15023431/f930b24b-e3af-4544-8ddd-0dfbaf674d35)
+![image](https://github.com/jemmec/shimmering-unity/assets/41222625/d594ea29-d0db-4b0e-bc1c-b1c0effa3ee1)
 
 ### Firmware manual & User guide
 1. Manual: https://shimmersensing.com/wp-content/docs/support/documentation/LogAndStream_for_Shimmer3_Firmware_User_Manual_rev0.11a.pdf
 2. User guide: https://shimmersensing.com/wp-content/docs/support/documentation/Consensys_User_Guide_rev1.6a.pdf
 
 ### Lighting Indication
-![image](https://github.com/jemmec/shimmering-unity/assets/15023431/b65621bb-31c0-4846-b4d0-6b94c51f92a6)
-![image](https://github.com/jemmec/shimmering-unity/assets/15023431/11cbc5a6-003e-493f-91e9-30620cde09d2)
+![image](https://github.com/jemmec/shimmering-unity/assets/41222625/e2255e72-385c-4a8b-8871-28b46a566a24)
+![image](https://github.com/jemmec/shimmering-unity/assets/41222625/ffa5d1ba-fe58-4ce9-832b-2c2518af0e92)
 
 ### Manually installing ShimmerAPI into Unity
 
