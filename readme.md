@@ -27,6 +27,10 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
 
 5. Create a script that connects to your shimmer device via the ShimmerAPI.
 
+## Firmware manual & User guide
+1. Manual: https://shimmersensing.com/wp-content/docs/support/documentation/LogAndStream_for_Shimmer3_Firmware_User_Manual_rev0.11a.pdf
+2. User guide: https://shimmersensing.com/wp-content/docs/support/documentation/Consensys_User_Guide_rev1.6a.pdf
+
 ## Credits
 
 The [ShimmerAPI](https://github.com/ShimmerEngineering/Shimmer-C-API) was create by [Shimmer](https://shimmersensing.com/)
