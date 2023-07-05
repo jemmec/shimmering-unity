@@ -125,7 +125,7 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
 
 3. Copy the correct version of the following `.dll` files into unity `/Plugins` folder, you may have to create the folder.
 
-    - `ShimmerAPI.dll` (netstandard2.0) ~that we just built~
+    - `ShimmerAPI.dll` (netstandard2.0) \~that we just built\~
     - `Google.Protobuf.dll` (netstandard2.0)
     - `Grpc.Core.Api.dll` (netstandard2.0)
     - `Grpc.Core.dll` (netstandard2.0)
