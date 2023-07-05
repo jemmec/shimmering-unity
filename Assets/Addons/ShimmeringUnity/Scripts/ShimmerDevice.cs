@@ -44,8 +44,14 @@ namespace ShimmeringUnity
 
         private int connectionCount;
 
+        //The connect blocker prevents multiple threads from spawning
+        private bool connectBlocker = false;
+
+        private int waitBufferMilliseconds = 250;
+
         private void Update()
         {
+            //Dequeue loop
             if (shimmerDataQueue.Count > 0)
             {
                 ObjectCluster objectCluster = shimmerDataQueue.Dequeue();
@@ -55,15 +61,13 @@ namespace ShimmeringUnity
 
         private void OnApplicationQuit()
         {
-            if (shimmerThread != null)
-            {
-                shimmerThread.Abort();
-                shimmerThread = null;
-            }
+            Disconnect();
         }
 
         public void Connect()
         {
+            //Prevent from connecting again
+            if (connectBlocker) return;
             if ((CurrentState == ShimmerUnityState.None ||
                 CurrentState == ShimmerUnityState.Disconnected))
             {
@@ -83,7 +87,7 @@ namespace ShimmeringUnity
                     //Must run in new thread
                     new Thread(() =>
                     {
-                        Thread.Sleep(500);
+                        Thread.Sleep(waitBufferMilliseconds);
                         shimmer.Disconnect();
                     }).Start();
                 }
@@ -98,7 +102,7 @@ namespace ShimmeringUnity
                 {
                     new Thread(() =>
                     {
-                        Thread.Sleep(500);
+                        Thread.Sleep(waitBufferMilliseconds);
                         shimmer.StartStreaming();
                     }).Start();
                 }
@@ -113,15 +117,23 @@ namespace ShimmeringUnity
                 {
                     new Thread(() =>
                     {
-                        Thread.Sleep(500);
+                        Thread.Sleep(waitBufferMilliseconds);
                         shimmer.StopStreaming();
                     }).Start();
                 }
             }
         }
 
+        public void ForceAbortThread()
+        {
+            if (shimmerThread != null)
+            {
+                shimmerThread.Abort();
+            }
+        }
+
         //The following region runs on a seperate thread to unity, you can not
-        //call ANYTHING UnityEngine related apart from Debug.Log
+        //call ANYTHING UnityEngine related apart from Debug.Log()
         #region Shimmer Thread
 
         private void ConnectionThread()
@@ -176,15 +188,9 @@ namespace ShimmeringUnity
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_NONE)
                     {
                         Debug.Log("THREAD: Disconnected " + connectionCount);
+                        //Remove event handler
+                        shimmer.UICallback -= HandleEvent;
                         CurrentState = ShimmerUnityState.Disconnected;
-                        //Auto reconnect on disconnect:
-                        // new Thread(() =>
-                        // {
-                        //     //Retry after half a second
-                        //     Thread.Sleep(500);
-                        //     connectionCount += 1;
-                        //     shimmer.Connect();
-                        // }).Start();
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_STREAMING)
                     {
@@ -205,6 +211,7 @@ namespace ShimmeringUnity
 
     }
 
+    [System.Serializable]
     public class ShimmerDeviceDataEvent : UnityEvent<ShimmerDevice, ObjectCluster> { }
 
 }
