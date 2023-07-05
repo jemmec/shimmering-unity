@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace ShimmeringUnity
 {
+    /// <summary>
+    /// Custom inspector for the Shimmer device
+    /// </summary>
     [CustomEditor(typeof(ShimmerDevice), true)]
     public class ShimmerDeviceEditor : Editor
     {

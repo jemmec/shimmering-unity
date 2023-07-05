@@ -8,45 +8,74 @@ using UnityEngine.Events;
 
 namespace ShimmeringUnity
 {
-    public enum ShimmerUnityState
-    {
-        None,
-        Connecting,
-        Connected,
-        Disconnected,
-        Streaming
-    }
 
+    /// <summary>
+    /// Handles connection and streaming of data from a Shimmer device
+    /// </summary>
     public class ShimmerDevice : MonoBehaviour
     {
 
-        private Queue<ObjectCluster> shimmerDataQueue = new Queue<ObjectCluster>();
-        public ShimmerUnityState CurrentState { get; private set; }
+        /// <summary>
+        /// The possible states of the shimmer device
+        /// </summary>
+        public enum State
+        {
+            /// <summary>
+            /// No state, device not connected.
+            /// </summary>
+            None,
+            /// <summary>
+            /// Device is currently connecting via bluetooth.
+            /// </summary>
+            Connecting,
+            /// <summary>
+            /// Device has sucessfully connected.
+            /// </summary>
+            Connected,
+            /// <summary>
+            /// Device has been disconnected.
+            /// </summary>
+            Disconnected,
+            /// <summary>
+            /// Device is currently streaming (and connected).
+            /// </summary>
+            Streaming
+        }
 
-        [Header("Connection Info")]
+        /// <summary>
+        /// The current state of this shimmer device
+        /// </summary>
+        /// <value></value>
+        public State CurrentState { get; private set; }
+
+        [Header("Configuration")]
+
         [SerializeField]
+        [Tooltip("The dev name for this device.")]
         private string shimmerDeviceID = "";
 
         [SerializeField]
+        [Tooltip("The communication port this device is connected to.")]
         private string comPort = "COM8";
 
         [SerializeField]
+        [Tooltip("The sampling rate for the device (default 51.2).")]
         private float samplingRate = 51.2f;
 
         [SerializeField]
+        [Tooltip("Data recieved event.")]
         private DataRecievedEvent onDataRecieved = new DataRecievedEvent();
+
         public DataRecievedEvent OnDataRecieved => onDataRecieved;
 
         //Private members
+
+        private Queue<ObjectCluster> shimmerDataQueue = new Queue<ObjectCluster>();
         private Thread shimmerThread = null;
-
         private ShimmerBluetooth shimmer;
-
         private int connectionCount;
-
         //The connect blocker prevents multiple threads from spawning
         private bool connectBlocker = false;
-
         private int waitBufferMilliseconds = 250;
 
         private void Update()
@@ -64,23 +93,29 @@ namespace ShimmeringUnity
             Disconnect();
         }
 
+        /// <summary>
+        /// Trys to connect to a Shimmer3 bluetooth device given the configuration
+        /// </summary>
         public void Connect()
         {
             //Prevent from connecting again
             if (connectBlocker) return;
-            if ((CurrentState == ShimmerUnityState.None ||
-                CurrentState == ShimmerUnityState.Disconnected))
+            if ((CurrentState == State.None ||
+                CurrentState == State.Disconnected))
             {
                 shimmerThread = new Thread(ConnectionThread);
                 shimmerThread.Start();
             }
         }
 
+        /// <summary>
+        /// Trys to disconnected from the currently connected device
+        /// </summary>
         public void Disconnect()
         {
-            if (CurrentState == ShimmerUnityState.Connected ||
-            CurrentState == ShimmerUnityState.Connecting ||
-            CurrentState == ShimmerUnityState.Streaming)
+            if (CurrentState == State.Connected ||
+            CurrentState == State.Connecting ||
+            CurrentState == State.Streaming)
             {
                 if (shimmer != null)
                 {
@@ -94,9 +129,12 @@ namespace ShimmeringUnity
             }
         }
 
+        /// <summary>
+        /// Starts the streaming on the connected device
+        /// </summary>
         public void StartStreaming()
         {
-            if (CurrentState == ShimmerUnityState.Connected)
+            if (CurrentState == State.Connected)
             {
                 if (shimmer != null)
                 {
@@ -109,9 +147,12 @@ namespace ShimmeringUnity
             }
         }
 
+        /// <summary>
+        /// Stops the streaming on the connected device
+        /// </summary>
         public void StopStreaming()
         {
-            if (CurrentState == ShimmerUnityState.Streaming)
+            if (CurrentState == State.Streaming)
             {
                 if (shimmer != null)
                 {
@@ -124,6 +165,9 @@ namespace ShimmeringUnity
             }
         }
 
+        /// <summary>
+        /// Forces the connection thread to be aborted
+        /// </summary>
         public void ForceAbortThread()
         {
             if (shimmerThread != null)
@@ -134,7 +178,9 @@ namespace ShimmeringUnity
 
         //The following region runs on a seperate thread to unity, you can not
         //call ANYTHING UnityEngine related apart from Debug.Log()
+
         #region Shimmer Thread
+
 
         private void ConnectionThread()
         {
@@ -144,20 +190,20 @@ namespace ShimmeringUnity
             byte[] defaultECGReg2 = ShimmerBluetooth.SHIMMER3_DEFAULT_TEST_REG2; //also see ShimmerBluetooth.SHIMMER3_DEFAULT_ECG_REG2
             shimmer =
                 new ShimmerLogAndStreamSystemSerialPort(
-                    shimmerDeviceID,
-                    comPort,
-                    samplingRate,
-                    0,
-                    4,
-                    enabledSensors,
-                    false,
-                    false,
-                    false,
-                    0,
-                    0,
-                    defaultECGReg1,
-                    defaultECGReg2,
-                    false
+                    devName: shimmerDeviceID,
+                    bComPort: comPort,
+                    samplingRate: samplingRate,
+                    accelRange: 0,
+                    gsrRange: 4,
+                    setEnabledSensors: enabledSensors,
+                    enableLowPowerAccel: false,
+                    enableLowPowerGyro: false,
+                    enableLowPowerMag: false,
+                    gyroRange: 0,
+                    magRange: 0,
+                    exg1configuration: defaultECGReg1,
+                    exg2configuration: defaultECGReg2,
+                    internalexppower: false
                 );
             shimmer.UICallback += HandleEvent;
             shimmer.Connect();
@@ -177,25 +223,25 @@ namespace ShimmeringUnity
                     if (state == (int)ShimmerBluetooth.SHIMMER_STATE_CONNECTED)
                     {
                         Debug.Log("THREAD: Connected " + connectionCount);
-                        CurrentState = ShimmerUnityState.Connected;
+                        CurrentState = State.Connected;
 
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_CONNECTING)
                     {
                         Debug.Log("THREAD: Connecting " + connectionCount);
-                        CurrentState = ShimmerUnityState.Connecting;
+                        CurrentState = State.Connecting;
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_NONE)
                     {
                         Debug.Log("THREAD: Disconnected " + connectionCount);
                         //Remove event handler
                         shimmer.UICallback -= HandleEvent;
-                        CurrentState = ShimmerUnityState.Disconnected;
+                        CurrentState = State.Disconnected;
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_STREAMING)
                     {
                         Debug.Log("THREAD: Streaming " + connectionCount);
-                        CurrentState = ShimmerUnityState.Streaming;
+                        CurrentState = State.Streaming;
                     }
                     break;
                 case (int)ShimmerBluetooth.ShimmerIdentifier.MSG_IDENTIFIER_NOTIFICATION_MESSAGE:
@@ -212,6 +258,9 @@ namespace ShimmeringUnity
     }
 
     [System.Serializable]
+    /// <summary>
+    /// Custom unity event for capturing data from the shimmer device
+    /// </summary>
     public class DataRecievedEvent : UnityEvent<ShimmerDevice, ObjectCluster> { }
 
 }

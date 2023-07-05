@@ -227,6 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817715986}
   - component: {fileID: 817715987}
+  - component: {fileID: 817715988}
   m_Layer: 0
   m_Name: ShimmerDevice
   m_TagString: Untagged
@@ -261,11 +262,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85d8db2a161f8040bea5a05fc72652b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
   shimmerDeviceID: S01
   comPort: COM4
   samplingRate: 51.2
-  tryConnect: 0
+  onDataRecieved:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &817715988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817715985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f946d310ef94d64695d06f1f4d94109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shimmerDevice: {fileID: 817715987}
+  signals:
+  - name: 0
+    format: 0
+    unit: 0
+    value: 0
+  - name: 1
+    format: 0
+    unit: 0
+    value: 0
+  - name: 2
+    format: 0
+    unit: 0
+    value: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
