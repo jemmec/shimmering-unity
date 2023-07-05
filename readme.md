@@ -123,15 +123,15 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
 
 2. Build the Class Libraries for ShimmerAPI in Visual Studio.
 
-3. Copy the correct version of following `.dll` files into unity `/Plugins` folder.
+3. Copy the correct version of the following `.dll` files into unity `/Plugins` folder, you may have to create the folder.
 
-    - Google.Protobuf (netstandard2.0)
-    - Grpc.Core.Api (netstandard2.0)
-    - Grpc.Core (netstandard2.0)
-    - MathNet.Numerics (netstandard2.0)
-    - ShimmerAPI (netstandard2.0)
-    - System.Runtime.CompilerServices.Unsafe (netstandard2.0)
-    - System.IO.Ports (net 461)
+    - `ShimmerAPI.dll` (netstandard2.0) ~that we just built~
+    - `Google.Protobuf.dll` (netstandard2.0)
+    - `Grpc.Core.Api.dll` (netstandard2.0)
+    - `Grpc.Core.dll` (netstandard2.0)
+    - `MathNet.Numerics.dll` (netstandard2.0)
+    - `System.Runtime.CompilerServices.Unsafe.dll` (netstandard2.0)
+    - `System.IO.Ports.dll` (net 461)
     
 4. Set API target to .Net Framework inside Unity Project Settings.
 
@@ -139,4 +139,4 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
 
 ## Credits
 
-The [ShimmerAPI](https://github.com/ShimmerEngineering/Shimmer-C-API) was create by [Shimmer](https://shimmersensing.com/)
+The [ShimmerAPI](https://github.com/ShimmerEngineering/Shimmer-C-API) was created by [Shimmer](https://shimmersensing.com/).
