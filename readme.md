@@ -2,6 +2,11 @@
 
 Shimmer integration into Unity.
 
+## Download software
+https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consensys V1.6.0 (64bit)
+![image](https://github.com/jemmec/shimmering-unity/assets/15023431/f930b24b-e3af-4544-8ddd-0dfbaf674d35)
+
+
 ## Installation Process
 
 1. Clone the ShimmerAPI solution https://github.com/ShimmerEngineering/Shimmer-C-API
