@@ -16,6 +16,18 @@ Shimmer3 integration directly in Unity.
 
 5. (OPTIONAL) Add a `ShimmerDataLogger` component to the same GameObject. Add the `ShimmerDevice` as an inspector reference, and add some signals to the signals list (ensuring the signals are enabled on your device). Run your project again, after starting the streaming you should now see the signal values in the `ShimmerDataLogger` change.
 
+
+### My values are all `NaN`, what do I do?
+
+In this case it's likely that the timestamp is _out of sync_ on the shimmer device so the calculated value (CAL) is incorrect. This usually happens when the device has been turned off and on without reconnection to the base device. To re-synronize the timestamp: 
+
+1. Power up the base device and then plug it into your PC.
+2. Plug the shimmer back into the base and turn it on.
+3. Open up the __Consensys__ software and identify the plugged in shimmer.
+4. Keeping the shimmer turned on, unplug it from the base.
+5. Connect as normal. The values should now be correct and you should not see an `NaN` values.
+
+
 ### Shimmer Data Reference
 
 #### Signal Names (Shimmer3)
@@ -124,7 +136,6 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
 2. Build the Class Libraries for ShimmerAPI in Visual Studio.
 
 3. Copy the correct version of the following `.dll` files into unity `/Plugins` folder, you may have to create the folder.
-
     - `ShimmerAPI.dll` (netstandard2.0) \~that we just built\~
     - `Google.Protobuf.dll` (netstandard2.0)
     - `Grpc.Core.Api.dll` (netstandard2.0)
@@ -132,7 +143,7 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
     - `MathNet.Numerics.dll` (netstandard2.0)
     - `System.Runtime.CompilerServices.Unsafe.dll` (netstandard2.0)
     - `System.IO.Ports.dll` (net 461)
-    
+
 4. Set API target to .Net Framework inside Unity Project Settings.
 
 5. Create a script that connects to your shimmer device via the ShimmerAPI.
