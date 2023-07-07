@@ -73,7 +73,7 @@ namespace ShimmeringUnity
                 //Get the data
                 SensorData data = signal.Unit == ShimmerConfig.SignalUnits.Automatic ?
                     objectCluster.GetData(
-                        Shimmer3Configuration.SignalNames.LOW_NOISE_ACCELEROMETER_X,
+                        ShimmerConfig.NAME_DICT[signal.Name],
                         ShimmerConfig.FORMAT_DICT[signal.Format]) :
                     objectCluster.GetData(
                         ShimmerConfig.NAME_DICT[signal.Name],
