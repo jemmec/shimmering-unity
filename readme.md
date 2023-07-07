@@ -1,4 +1,4 @@
-# Shimmering Unity
+# Shimmer sensor 3 via Unity
 
 Shimmer3 integration directly in Unity.
 
