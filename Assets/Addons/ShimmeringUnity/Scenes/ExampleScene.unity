@@ -265,6 +265,7 @@ MonoBehaviour:
   shimmerDeviceID: S01
   comPort: COM4
   samplingRate: 51.2
+  enabledSensors: 4224
   onDataRecieved:
     m_PersistentCalls:
       m_Calls: []
@@ -285,15 +286,15 @@ MonoBehaviour:
   - name: 0
     format: 0
     unit: 0
-    value: 0
+    value: 
   - name: 1
     format: 0
     unit: 0
-    value: 0
+    value: 
   - name: 2
     format: 0
     unit: 0
-    value: 0
+    value: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

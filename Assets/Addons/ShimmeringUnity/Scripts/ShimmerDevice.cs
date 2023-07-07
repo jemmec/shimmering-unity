@@ -63,6 +63,9 @@ namespace ShimmeringUnity
         private float samplingRate = 51.2f;
 
         [SerializeField]
+        private ShimmerConfig.SensorBitmap enabledSensors;
+
+        [SerializeField]
         [Tooltip("Data recieved event.")]
         private DataRecievedEvent onDataRecieved = new DataRecievedEvent();
 
@@ -185,7 +188,6 @@ namespace ShimmeringUnity
         private void ConnectionThread()
         {
             Debug.Log("THREAD: Starting shimmer device connection thread...");
-            int enabledSensors = ((int)ShimmerBluetooth.SensorBitmapShimmer3.SENSOR_A_ACCEL | (int)ShimmerBluetooth.SensorBitmapShimmer3.SENSOR_D_ACCEL);
             byte[] defaultECGReg1 = ShimmerBluetooth.SHIMMER3_DEFAULT_TEST_REG1; //also see ShimmerBluetooth.SHIMMER3_DEFAULT_ECG_REG1
             byte[] defaultECGReg2 = ShimmerBluetooth.SHIMMER3_DEFAULT_TEST_REG2; //also see ShimmerBluetooth.SHIMMER3_DEFAULT_ECG_REG2
             shimmer =
@@ -195,7 +197,7 @@ namespace ShimmeringUnity
                     samplingRate: samplingRate,
                     accelRange: 0,
                     gsrRange: 4,
-                    setEnabledSensors: enabledSensors,
+                    setEnabledSensors: (int)enabledSensors,
                     enableLowPowerAccel: false,
                     enableLowPowerGyro: false,
                     enableLowPowerMag: false,

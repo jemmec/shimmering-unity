@@ -198,5 +198,32 @@ namespace ShimmeringUnity
             {SignalUnits.NanoAmpere , "nA"},
         };
 
+        [System.Flags]
+        /// <summary>
+        /// The sensor bitmap for shimmer3
+        /// </summary>
+        public enum SensorBitmap
+        {
+            SENSOR_A_ACCEL = 0x80,
+            SENSOR_MPU9150_GYRO = 0x040,
+            SENSOR_LSM303DLHC_MAG = 0x20,
+            SENSOR_GSR = 0x04,
+            SENSOR_EXT_A7 = 0x02,
+            SENSOR_EXT_A6 = 0x01,
+            SENSOR_VBATT = 0x2000,
+            SENSOR_D_ACCEL = 0x1000,
+            SENSOR_EXT_A15 = 0x0800,
+            SENSOR_INT_A1 = 0x0400,
+            SENSOR_INT_A12 = 0x0200,
+            SENSOR_INT_A13 = 0x0100,
+            SENSOR_INT_A14 = 0x800000,
+            SENSOR_BMP180_PRESSURE = 0x40000,
+            SENSOR_EXG1_24BIT = 0x10,
+            SENSOR_EXG2_24BIT = 0x08,
+            SENSOR_EXG1_16BIT = 0x100000,
+            SENSOR_EXG2_16BIT = 0x080000,
+            SENSOR_BRIDGE_AMP = 0x8000
+        }
+
     }
 }
