@@ -79,8 +79,13 @@ namespace ShimmeringUnity
                         ShimmerConfig.NAME_DICT[signal.Name],
                         ShimmerConfig.FORMAT_DICT[signal.Format],
                         ShimmerConfig.UNIT_DICT[signal.Unit]);
+
+                //If data is null, early out
+                if (data == null)
+                    return;
+
                 //Write data back into the signal for debugging
-                signal.Value = $"{data.Data}";
+                signal.Value = $"{data.Data} {data.Unit}";
 
                 //This is where you can do something with the data...
             }
