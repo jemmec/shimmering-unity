@@ -73,7 +73,7 @@ namespace ShimmeringUnity
                 //Get the data
                 SensorData data = signal.Unit == ShimmerConfig.SignalUnits.None ?
                     objectCluster.GetData(
-                        ShimmerConfig.NAME_DICT[signal.Name],
+                        Shimmer3Configuration.SignalNames.LOW_NOISE_ACCELEROMETER_X,
                         ShimmerConfig.FORMAT_DICT[signal.Format]) :
                     objectCluster.GetData(
                         ShimmerConfig.NAME_DICT[signal.Name],
@@ -82,7 +82,10 @@ namespace ShimmeringUnity
 
                 //If data is null, early out
                 if (data == null)
+                {
+                    signal.Value = "NULL";
                     return;
+                }
 
                 //Write data back into the signal for debugging
                 signal.Value = $"{data.Data} {data.Unit}";
