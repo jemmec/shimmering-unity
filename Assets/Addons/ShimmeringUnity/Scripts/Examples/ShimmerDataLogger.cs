@@ -30,7 +30,7 @@ namespace ShimmeringUnity
             public ShimmerConfig.SignalFormat Format => format;
 
             [SerializeField]
-            [Tooltip("The units the signal's value is displayed in, set to \"None\" for default.")]
+            [Tooltip("The units the signal's value is displayed in, set to \"Automatic\" for default.")]
             private ShimmerConfig.SignalUnits unit;
 
             public ShimmerConfig.SignalUnits Unit => unit;
@@ -71,7 +71,7 @@ namespace ShimmeringUnity
             foreach (var signal in signals)
             {
                 //Get the data
-                SensorData data = signal.Unit == ShimmerConfig.SignalUnits.None ?
+                SensorData data = signal.Unit == ShimmerConfig.SignalUnits.Automatic ?
                     objectCluster.GetData(
                         Shimmer3Configuration.SignalNames.LOW_NOISE_ACCELEROMETER_X,
                         ShimmerConfig.FORMAT_DICT[signal.Format]) :

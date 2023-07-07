@@ -152,7 +152,7 @@ namespace ShimmeringUnity
         /// </summary>
         public enum SignalUnits
         {
-            None,
+            Automatic,
             MilliSeconds,
             NoUnits,
             MeterPerSecondSquared,
@@ -180,7 +180,7 @@ namespace ShimmeringUnity
         public static Dictionary<SignalUnits, string> UNIT_DICT =
             new Dictionary<SignalUnits, string>()
         {
-            {SignalUnits.None , ""},
+            {SignalUnits.Automatic , ""},
             {SignalUnits.MilliSeconds , "mSecs"},
             {SignalUnits.NoUnits , "no units"},
             {SignalUnits.MeterPerSecondSquared , "m/(sec^2)"},
