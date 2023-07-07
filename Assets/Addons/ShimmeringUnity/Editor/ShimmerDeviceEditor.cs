@@ -16,20 +16,24 @@ namespace ShimmeringUnity
             ShimmerDevice shimmerDevice = (ShimmerDevice)target;
             GUIStyle style = new GUIStyle();
             style.richText = true;
-            GUILayout.Label($"<size=24><color=#00ff00>Current State: {shimmerDevice.CurrentState.ToString()}</color></size>", style);
-            if (GUILayout.Button("Connect"))
+            if (Application.isPlaying)
+                GUILayout.Label($"<size=24><color=#00ff00>Current State: {shimmerDevice.CurrentState.ToString()}</color></size>", style);
+            else
+                GUILayout.Label($"<size=24><color=#ff0000>App not running.</color></size>", style);
+
+            if (Application.isPlaying && GUILayout.Button("Connect"))
             {
                 shimmerDevice.Connect();
             }
-            if (GUILayout.Button("Disconnect"))
+            if (Application.isPlaying && GUILayout.Button("Disconnect"))
             {
                 shimmerDevice.Disconnect();
             }
-            if (GUILayout.Button("Start Streaming"))
+            if (Application.isPlaying && GUILayout.Button("Start Streaming"))
             {
                 shimmerDevice.StartStreaming();
             }
-            if (GUILayout.Button("Stop Streaming"))
+            if (Application.isPlaying && GUILayout.Button("Stop Streaming"))
             {
                 shimmerDevice.StopStreaming();
             }
