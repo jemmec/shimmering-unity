@@ -37,9 +37,9 @@ namespace ShimmeringUnity
 
             [SerializeField]
             [Tooltip("The value output of this signal (only for debug purposes).")]
-            private double value;
+            private string value;
 
-            public double Value
+            public string Value
             {
                 set => this.value = value;
             }
@@ -80,7 +80,7 @@ namespace ShimmeringUnity
                         ShimmerConfig.FORMAT_DICT[signal.Format],
                         ShimmerConfig.UNIT_DICT[signal.Unit]);
                 //Write data back into the signal for debugging
-                signal.Value = data.Data;
+                signal.Value = $"{data.Data}";
 
                 //This is where you can do something with the data...
             }
