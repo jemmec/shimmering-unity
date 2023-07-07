@@ -6,7 +6,7 @@ Shimmer3 integration directly in Unity.
 
 ## Usage
 
-1. Download the latest [unity package]() from releases and import it into your unity project.
+1. Download the latest [unity package](https://github.com/jemmec/shimmering-unity/releases/latest) from releases and import it into your unity project.
 
 2. Add the `ShimmerDevice` component to a GameObject in your scene (alternatively, open the `ExampleScene` scene).
 
