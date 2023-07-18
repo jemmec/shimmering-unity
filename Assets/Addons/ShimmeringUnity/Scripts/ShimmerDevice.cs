@@ -67,7 +67,7 @@ namespace ShimmeringUnity
         private ShimmerConfig.SensorBitmap enabledSensors;
 
         [SerializeField]
-        [Tooltip("Enables the intenral ADC pins on the shimmer3.")]
+        [Tooltip("Enables the internal ADC pins on the shimmer3.")]
         private bool useInternalExpPower = true;
 
         [SerializeField]
