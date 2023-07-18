@@ -143,11 +143,12 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
     - `MathNet.Numerics.dll` (netstandard2.0)
     - `System.Runtime.CompilerServices.Unsafe.dll` (netstandard2.0)
     - `System.IO.Ports.dll` (net 461)
+    - `ShimmerClosedLibraryRev0_5.dll`
+
 
 4. Set API target to .Net Framework inside Unity Project Settings.
 
 5. Create a script that connects to your shimmer device via the ShimmerAPI.
-
 ## Credits
 
 The [ShimmerAPI](https://github.com/ShimmerEngineering/Shimmer-C-API) was created by [Shimmer](https://shimmersensing.com/).
