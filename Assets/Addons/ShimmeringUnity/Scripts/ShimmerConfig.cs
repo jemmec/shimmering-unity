@@ -35,6 +35,9 @@ namespace ShimmeringUnity
         /// </summary>
         public enum SignalName
         {
+            TIMESTAMP,
+            SYSTEM_TIMESTAMP,
+            SYSTEM_TIMESTAMP_PLOT,
             LOW_NOISE_ACCELEROMETER_X,
             LOW_NOISE_ACCELEROMETER_Y,
             LOW_NOISE_ACCELEROMETER_Z,
@@ -96,6 +99,9 @@ namespace ShimmeringUnity
         public static Dictionary<SignalName, string> NAME_DICT =
             new Dictionary<SignalName, string>()
         {
+            {SignalName.TIMESTAMP, "Timestamp"},
+            {SignalName.SYSTEM_TIMESTAMP, "System Timestamp"},
+            {SignalName.SYSTEM_TIMESTAMP_PLOT, "System Timestamp Plot"},
             {SignalName.LOW_NOISE_ACCELEROMETER_X, "Low Noise Accelerometer X"},
             {SignalName.LOW_NOISE_ACCELEROMETER_Y, "Low Noise Accelerometer Y"},
             {SignalName.LOW_NOISE_ACCELEROMETER_Z, "Low Noise Accelerometer Z"},
