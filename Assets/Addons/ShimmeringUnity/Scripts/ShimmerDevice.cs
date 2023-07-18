@@ -63,7 +63,12 @@ namespace ShimmeringUnity
         private float samplingRate = 51.2f;
 
         [SerializeField]
+        [Tooltip("Select the sensors you want to enable during connection.")]
         private ShimmerConfig.SensorBitmap enabledSensors;
+
+        [SerializeField]
+        [Tooltip("Enables the intenral ADC pins on the shimmer3.")]
+        private bool useInternalExpPower = true;
 
         [SerializeField]
         [Tooltip("Data recieved event.")]
@@ -205,7 +210,7 @@ namespace ShimmeringUnity
                     magRange: 0,
                     exg1configuration: defaultECGReg1,
                     exg2configuration: defaultECGReg2,
-                    internalexppower: false
+                    internalexppower: useInternalExpPower
                 );
             shimmer.UICallback += HandleEvent;
             shimmer.Connect();
