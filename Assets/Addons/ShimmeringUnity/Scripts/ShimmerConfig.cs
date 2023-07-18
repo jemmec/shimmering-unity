@@ -231,5 +231,75 @@ namespace ShimmeringUnity
             SENSOR_BRIDGE_AMP = 0x8000
         }
 
+        /// <summary>
+        /// Shimmer3 options - 0,1,2,3,4 = 2g,4g,8g,16g.
+        /// </summary>
+        public enum AccelerometerRange
+        {
+            [UnityEngine.InspectorName("2g")]
+            zero = 0,
+            [UnityEngine.InspectorName("4g")]
+            one = 1,
+            [UnityEngine.InspectorName("8g")]
+            two = 2,
+            [UnityEngine.InspectorName("16g")]
+            three = 3
+        }
+
+        /// <summary>
+        /// Range is between 0 and 4. 0 = 8-63kOhm, 1 = 63-220kOhm, 2 = 220-680kOhm, 3 = 680kOhm-4.7MOhm, 4 = Auto range
+        /// </summary>
+        public enum GSRRange
+        {
+            [UnityEngine.InspectorName("8-63kOhm")]
+            zero = 0,
+            [UnityEngine.InspectorName("63-220kOhm")]
+            one = 1,
+            [UnityEngine.InspectorName("220-680kOhm")]
+            two = 2,
+            [UnityEngine.InspectorName("680kOhm-4.7MOhm")]
+            three = 3,
+            [UnityEngine.InspectorName("Auto")]
+            four = 4
+        }
+
+        /// <summary>
+        /// Options are 0,1,2,3. Where 0 = 250 Degree/s, 1 = 500 Degree/s, 2 = 1000 Degree/s, 3 = 2000 Degree/s
+        /// </summary>
+        public enum GyroscopeRange
+        {
+            [UnityEngine.InspectorName("250 Degrees per sec")]
+            zero = 0,
+            [UnityEngine.InspectorName("500 Degrees per sec")]
+            one = 1,
+            [UnityEngine.InspectorName("1000 Degrees per sec")]
+            two = 2,
+            [UnityEngine.InspectorName("2000 Degrees per sec")]
+            three = 3
+        }
+
+        /// <summary>
+        /// Shimmer3: 1,2,3,4,5,6,7 = 1.3, 1.9, 2.5, 4.0, 4.7, 5.6, 8.1
+        /// </summary>
+        public enum MagnetometerRange
+        {
+            [UnityEngine.InspectorName("0")]
+            zero = 0,
+            [UnityEngine.InspectorName("1.3")]
+            one = 1,
+            [UnityEngine.InspectorName("1.9")]
+            two = 2,
+            [UnityEngine.InspectorName("2.5")]
+            three = 3,
+            [UnityEngine.InspectorName("4.0")]
+            four = 4,
+            [UnityEngine.InspectorName("4.7")]
+            five = 5,
+            [UnityEngine.InspectorName("5.6")]
+            six = 6,
+            [UnityEngine.InspectorName("8.1")]
+            seven = 7
+        }
+
     }
 }

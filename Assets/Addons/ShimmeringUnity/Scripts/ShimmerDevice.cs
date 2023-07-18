@@ -59,12 +59,28 @@ namespace ShimmeringUnity
         private string comPort = "COM8";
 
         [SerializeField]
-        [Tooltip("The sampling rate for the device (default 51.2).")]
+        [Tooltip("The sampling rate for the device (default 51.2Hz).")]
         private float samplingRate = 51.2f;
 
         [SerializeField]
         [Tooltip("Select the sensors you want to enable during connection.")]
         private ShimmerConfig.SensorBitmap enabledSensors;
+
+        [SerializeField]
+        [Tooltip("The range for the accelerometer.")]
+        private ShimmerConfig.AccelerometerRange accelerometerRange;
+
+        [SerializeField]
+        [Tooltip("The range for the GSR.")]
+        private ShimmerConfig.GSRRange gsrRange;
+
+        [SerializeField]
+        [Tooltip("The range for the gyroscope.")]
+        private ShimmerConfig.GyroscopeRange gyroscopeRange;
+
+        [SerializeField]
+        [Tooltip("The range for the magnetometer.")]
+        private ShimmerConfig.MagnetometerRange magnetometerRange;
 
         [SerializeField]
         [Tooltip("Enables the internal ADC pins on the shimmer3.")]
@@ -200,14 +216,14 @@ namespace ShimmeringUnity
                     devName: shimmerDeviceID,
                     bComPort: comPort,
                     samplingRate: samplingRate,
-                    accelRange: 0,
-                    gsrRange: 4,
+                    accelRange: (int)accelerometerRange,
+                    gsrRange: (int)gsrRange,
+                    gyroRange: (int)gyroscopeRange,
+                    magRange: (int)magnetometerRange,
                     setEnabledSensors: (int)enabledSensors,
                     enableLowPowerAccel: false,
                     enableLowPowerGyro: false,
                     enableLowPowerMag: false,
-                    gyroRange: 0,
-                    magRange: 0,
                     exg1configuration: defaultECGReg1,
                     exg2configuration: defaultECGReg2,
                     internalexppower: useInternalExpPower
@@ -231,7 +247,6 @@ namespace ShimmeringUnity
                     {
                         Debug.Log("THREAD: Connected " + connectionCount);
                         CurrentState = State.Connected;
-
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_CONNECTING)
                     {

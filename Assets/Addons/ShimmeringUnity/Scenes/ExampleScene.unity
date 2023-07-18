@@ -266,6 +266,11 @@ MonoBehaviour:
   comPort: COM4
   samplingRate: 51.2
   enabledSensors: 4224
+  accelerometerRange: 0
+  gsrRange: 4
+  gyroscopeRange: 0
+  magnetometerRange: 0
+  useInternalExpPower: 1
   onDataRecieved:
     m_PersistentCalls:
       m_Calls: []
