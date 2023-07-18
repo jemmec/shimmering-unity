@@ -61,6 +61,7 @@ namespace ShimmeringUnity
         [SerializeField]
         [Tooltip("The sampling rate for the device (default 51.2Hz).")]
         private float samplingRate = 51.2f;
+        public float SamplingRate => samplingRate;
 
         [SerializeField]
         [Tooltip("Select the sensors you want to enable during connection.")]
