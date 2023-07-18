@@ -37,7 +37,7 @@ namespace ShimmeringUnity
             {
                 shimmerDevice.StopStreaming();
             }
-            if (GUILayout.Button("Force Abort Thread"))
+            if (Application.isPlaying && GUILayout.Button("Force Abort Thread"))
             {
                 shimmerDevice.ForceAbortThread();
             }
