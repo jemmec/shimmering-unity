@@ -236,13 +236,13 @@ namespace ShimmeringUnity
         /// </summary>
         public enum AccelerometerRange
         {
-            [UnityEngine.InspectorName("2g")]
+            [UnityEngine.InspectorName("± 2g")]
             zero = 0,
-            [UnityEngine.InspectorName("4g")]
+            [UnityEngine.InspectorName("± 4g")]
             one = 1,
-            [UnityEngine.InspectorName("8g")]
+            [UnityEngine.InspectorName("± 8g")]
             two = 2,
-            [UnityEngine.InspectorName("16g")]
+            [UnityEngine.InspectorName("± 16g")]
             three = 3
         }
 
@@ -259,7 +259,7 @@ namespace ShimmeringUnity
             two = 2,
             [UnityEngine.InspectorName("680kOhm-4.7MOhm")]
             three = 3,
-            [UnityEngine.InspectorName("Auto")]
+            [UnityEngine.InspectorName("Auto Range")]
             four = 4
         }
 
@@ -268,13 +268,13 @@ namespace ShimmeringUnity
         /// </summary>
         public enum GyroscopeRange
         {
-            [UnityEngine.InspectorName("250 Degrees per sec")]
+            [UnityEngine.InspectorName("250dps")]
             zero = 0,
-            [UnityEngine.InspectorName("500 Degrees per sec")]
+            [UnityEngine.InspectorName("500dps")]
             one = 1,
-            [UnityEngine.InspectorName("1000 Degrees per sec")]
+            [UnityEngine.InspectorName("1000dps")]
             two = 2,
-            [UnityEngine.InspectorName("2000 Degrees per sec")]
+            [UnityEngine.InspectorName("2000dps")]
             three = 3
         }
 
@@ -283,21 +283,19 @@ namespace ShimmeringUnity
         /// </summary>
         public enum MagnetometerRange
         {
-            [UnityEngine.InspectorName("0")]
-            zero = 0,
-            [UnityEngine.InspectorName("1.3")]
+            [UnityEngine.InspectorName("± 1.3Ga")]
             one = 1,
-            [UnityEngine.InspectorName("1.9")]
+            [UnityEngine.InspectorName("± 1.3Ga")]
             two = 2,
-            [UnityEngine.InspectorName("2.5")]
+            [UnityEngine.InspectorName("± 2.5Ga")]
             three = 3,
-            [UnityEngine.InspectorName("4.0")]
+            [UnityEngine.InspectorName("± 4.0Ga")]
             four = 4,
-            [UnityEngine.InspectorName("4.7")]
+            [UnityEngine.InspectorName("± 4.7Ga")]
             five = 5,
-            [UnityEngine.InspectorName("5.6")]
+            [UnityEngine.InspectorName("± 5.6Ga")]
             six = 6,
-            [UnityEngine.InspectorName("8.1")]
+            [UnityEngine.InspectorName("± 8.1Ga")]
             seven = 7
         }
 
