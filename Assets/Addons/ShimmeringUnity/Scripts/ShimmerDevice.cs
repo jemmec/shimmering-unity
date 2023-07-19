@@ -10,7 +10,7 @@ namespace ShimmeringUnity
 {
 
     /// <summary>
-    /// Handles connection and streaming of data from a Shimmer device
+    /// Handles inital connection and streaming of data from a Shimmer3 device
     /// </summary>
     public class ShimmerDevice : MonoBehaviour
     {
@@ -84,8 +84,17 @@ namespace ShimmeringUnity
         private ShimmerConfig.MagnetometerRange magnetometerRange;
 
         [SerializeField]
+        private bool enableLowPowerAccel = false;
+
+        [SerializeField]
+        private bool enableLowPowerGyro = false;
+
+        [SerializeField]
+        private bool enableLowPowerMag = false;
+
+        [SerializeField]
         [Tooltip("Enables the internal ADC pins on the shimmer3.")]
-        private bool useInternalExpPower = true;
+        private bool enableInternalExpPower = true;
 
         [SerializeField]
         [Tooltip("Data recieved event.")]
@@ -222,12 +231,12 @@ namespace ShimmeringUnity
                     gyroRange: (int)gyroscopeRange,
                     magRange: (int)magnetometerRange,
                     setEnabledSensors: (int)enabledSensors,
-                    enableLowPowerAccel: false,
-                    enableLowPowerGyro: false,
-                    enableLowPowerMag: false,
+                    enableLowPowerAccel: enableLowPowerAccel,
+                    enableLowPowerGyro: enableLowPowerGyro,
+                    enableLowPowerMag: enableLowPowerMag,
                     exg1configuration: defaultECGReg1,
                     exg2configuration: defaultECGReg2,
-                    internalexppower: useInternalExpPower
+                    internalexppower: enableInternalExpPower
                 );
             shimmer.UICallback += HandleEvent;
             shimmer.Connect();
