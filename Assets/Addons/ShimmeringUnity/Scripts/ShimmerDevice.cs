@@ -48,53 +48,125 @@ namespace ShimmeringUnity
         /// <value></value>
         public State CurrentState { get; private set; }
 
+        //Inspector & Public members
+
         [Header("Configuration")]
 
         [SerializeField]
         [Tooltip("The dev name for this device.")]
-        private string shimmerDeviceID = "";
+        private string devName = "";
+
+        public string DevName
+        {
+            get => devName;
+            set => devName = value;
+        }
 
         [SerializeField]
         [Tooltip("The communication port this device is connected to.")]
         private string comPort = "COM8";
 
+        public string COMPort
+        {
+            get => comPort;
+            set => comPort = value;
+        }
+
         [SerializeField]
         [Tooltip("The sampling rate for the device (default 51.2Hz).")]
         private float samplingRate = 51.2f;
-        public float SamplingRate => samplingRate;
+        public float SamplingRate
+        {
+            get => samplingRate;
+            set => samplingRate = value;
+        }
 
         [SerializeField]
         [Tooltip("Select the sensors you want to enable during connection.")]
         private ShimmerConfig.SensorBitmap enabledSensors;
 
+        public ShimmerConfig.SensorBitmap EnabledSensors
+        {
+            get => enabledSensors;
+            set => enabledSensors = value;
+        }
+
         [SerializeField]
         [Tooltip("The range for the accelerometer.")]
         private ShimmerConfig.AccelerometerRange accelerometerRange;
+
+        public ShimmerConfig.AccelerometerRange AccelerometerRange
+        {
+            get => accelerometerRange;
+            set => accelerometerRange = value;
+        }
 
         [SerializeField]
         [Tooltip("The range for the GSR.")]
         private ShimmerConfig.GSRRange gsrRange;
 
+        public ShimmerConfig.GSRRange GSRRange
+        {
+            get => gsrRange;
+            set => gsrRange = value;
+        }
+
         [SerializeField]
         [Tooltip("The range for the gyroscope.")]
         private ShimmerConfig.GyroscopeRange gyroscopeRange;
+
+        public ShimmerConfig.GyroscopeRange GyroscopeRange
+        {
+            get => gyroscopeRange;
+            set => gyroscopeRange = value;
+        }
 
         [SerializeField]
         [Tooltip("The range for the magnetometer.")]
         private ShimmerConfig.MagnetometerRange magnetometerRange;
 
+        public ShimmerConfig.MagnetometerRange MagnetometerRange
+        {
+            get => magnetometerRange;
+            set => magnetometerRange = value;
+        }
+
         [SerializeField]
         private bool enableLowPowerAccel = false;
+
+        public bool EnableLowPowerAccel
+        {
+            get => enableLowPowerAccel;
+            set => enableLowPowerAccel = value;
+        }
 
         [SerializeField]
         private bool enableLowPowerGyro = false;
 
+        public bool EnableLowPowerGyro
+        {
+            get => enableLowPowerGyro;
+            set => enableLowPowerGyro = value;
+        }
+
         [SerializeField]
         private bool enableLowPowerMag = false;
+
+        public bool EnableLowPowerMag
+        {
+            get => enableLowPowerMag;
+            set => enableLowPowerMag = value;
+        }
 
         [SerializeField]
         [Tooltip("Enables the internal ADC pins on the shimmer3.")]
         private bool enableInternalExpPower = true;
+
+        public bool EnableInternalExpPower
+        {
+            get => enableInternalExpPower;
+            set => enableInternalExpPower = value;
+        }
 
         [SerializeField]
         [Tooltip("Data recieved event.")]
@@ -103,7 +175,6 @@ namespace ShimmeringUnity
         public DataRecievedEvent OnDataRecieved => onDataRecieved;
 
         //Private members
-
         private Queue<ObjectCluster> shimmerDataQueue = new Queue<ObjectCluster>();
         private Thread shimmerThread = null;
         private ShimmerBluetooth shimmer;
@@ -221,7 +292,7 @@ namespace ShimmeringUnity
             Debug.Log("THREAD: Starting shimmer device connection thread...");
             shimmer =
                 new ShimmerLogAndStreamSystemSerialPort(
-                    devName: shimmerDeviceID,
+                    devName: devName,
                     bComPort: comPort,
                     samplingRate: samplingRate,
                     accelRange: (int)accelerometerRange,
