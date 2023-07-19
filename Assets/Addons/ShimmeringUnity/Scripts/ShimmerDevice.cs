@@ -219,8 +219,6 @@ namespace ShimmeringUnity
         private void ConnectionThread()
         {
             Debug.Log("THREAD: Starting shimmer device connection thread...");
-            byte[] defaultECGReg1 = ShimmerBluetooth.SHIMMER3_DEFAULT_TEST_REG1; //also see ShimmerBluetooth.SHIMMER3_DEFAULT_ECG_REG1
-            byte[] defaultECGReg2 = ShimmerBluetooth.SHIMMER3_DEFAULT_TEST_REG2; //also see ShimmerBluetooth.SHIMMER3_DEFAULT_ECG_REG2
             shimmer =
                 new ShimmerLogAndStreamSystemSerialPort(
                     devName: shimmerDeviceID,
@@ -234,8 +232,8 @@ namespace ShimmeringUnity
                     enableLowPowerAccel: enableLowPowerAccel,
                     enableLowPowerGyro: enableLowPowerGyro,
                     enableLowPowerMag: enableLowPowerMag,
-                    exg1configuration: defaultECGReg1,
-                    exg2configuration: defaultECGReg2,
+                    exg1configuration: Shimmer3Configuration.EXG_EMG_CONFIGURATION_CHIP1,
+                    exg2configuration: Shimmer3Configuration.EXG_EMG_CONFIGURATION_CHIP2,
                     internalexppower: enableInternalExpPower
                 );
             shimmer.UICallback += HandleEvent;
