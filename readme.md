@@ -14,8 +14,21 @@ Shimmer3 integration directly in Unity.
 
 4. Run your project and test the connection with the [Connect] and [StartStreaming] buttons.
 
-5. (OPTIONAL) Add a `ShimmerDataLogger` component to the same GameObject. Add the `ShimmerDevice` as an inspector reference, and add some signals to the signals list (ensuring the signals are enabled on your device). Run your project again, after starting the streaming you should now see the signal values in the `ShimmerDataLogger` change.
+## Examples
 
+### ShimmerDataLogger
+The `ShimmerDataLogger` script is an example way to easily log specific data from the shimmer device.
+
+Add a `ShimmerDataLogger` component to the same GameObject. Add the `ShimmerDevice` as an inspector reference, and add some signals to the signals list (ensuring the signals are enabled on your device). Run your project again, after starting the streaming you should now see the signal values in the `ShimmerDataLogger` change.
+
+### ShimmerHeartrateMonitor
+The `ShimmerHeartrateMonitor` script is an example of monitoring Heartrate from a shimmer device.
+
+To monitor heart rate, ensure the `ShimmerDevice` has it's `enableInternalExpPower` enabled and the `INTERNAL_ADC_A13` sensor selected in the `enabledSensor` list.
+Add the `ShimmerDevice` as a reference to the `ShimmerHeartrateMonitor` script. 
+Connect and start streaming, after 10 seconds you should see the correct heartrate being reported in the `heartrate` variable.
+
+## Troubleshooting
 
 ### My values are all `NaN`, what do I do?
 
