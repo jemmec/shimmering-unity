@@ -13,7 +13,7 @@ namespace ShimmeringUnity
     /// INTERNAL_ADC_A13 sensor enabled. Also ensure the correct
     /// sampling rate is set before running the application.
     /// </summary>
-    public class ShimmerHeartrateMonitor : MonoBehaviour
+    public class ShimmerHeartRateMonitor : MonoBehaviour
     {
         [SerializeField]
         private ShimmerDevice shimmerDevice;
