@@ -17,28 +17,28 @@ Shimmer3 integration directly in Unity.
 ## Examples
 
 ### Shimmer data logger
-The `ShimmerDataLogger` script is an example way to easily log specific data from the shimmer device.
+The `ShimmerDataLogger` script is an example way to log specific data from the shimmer device easily.
 
-Add a `ShimmerDataLogger` component to the same GameObject. Add the `ShimmerDevice` as an inspector reference, and add some signals to the signals list (ensuring the signals are enabled on your device). Run your project again, after starting the streaming you should now see the signal values in the `ShimmerDataLogger` change.
+Add a `ShimmerDataLogger` component to the same GameObject. Add the `ShimmerDevice` as an inspector reference and some signals to the signals list (ensuring the signals are enabled on your device). Run your project again. After starting the streaming, you should now see the signal values in the `ShimmerDataLogger` change.
 
 ### Shimmer heart rate monitor
 The `ShimmerHeartRateMonitor` script is an example of monitoring Heartrate from a shimmer device.
 
-To monitor heart rate, ensure the `ShimmerDevice` has it's `enableInternalExpPower` enabled and the `INTERNAL_ADC_A13` sensor selected in the `enabledSensor` list.
+To monitor heart rate, ensure the `ShimmerDevice` has its `enableInternalExpPower` enabled and the `INTERNAL_ADC_A13` sensor selected in the `enabledSensor` list.
 Add the `ShimmerDevice` as a reference to the `ShimmerHeartRateMonitor` script. 
-Connect and start streaming, after 10 seconds you should see the correct heart rate being reported in the `HeartRate` variable.
+Connect and start streaming. After 10 seconds, you should see the correct heart rate being reported in the `HeartRate` variable.
 
 ## Troubleshooting
 
-### My values are all `NaN`, what do I do?
+### My values are all `NaN` what do I do?
 
-In this case it's likely that the timestamp is _out of sync_ on the shimmer device so the calculated value (CAL) is incorrect. This usually happens when the device has been turned off and on without reconnection to the base device. To re-synronize the timestamp: 
+In this case, the timestamp is likely _out of sync_ on the shimmer device, so the calculated value (CAL) is incorrect. This usually happens when the device has been turned off and on without reconnection to the base device. To re-synchronize the timestamp: 
 
 1. Power up the base device and then plug it into your PC.
 2. Plug the shimmer back into the base and turn it on.
 3. Open up the __Consensys__ software and identify the plugged in shimmer.
 4. Keeping the shimmer turned on, unplug it from the base.
-5. Connect as normal. The values should now be correct and you should not see an `NaN` values.
+5. Connect as normal. The values should now be correct, and you should not see a `NaN` value.
 
 
 ### Shimmer Data Reference
@@ -130,7 +130,7 @@ NanoAmpere = "nA"
 
 ## Knowledge
 
-### Flashing shimmer to latest Log and Stream firmware
+### Flashing shimmer to the latest Log and Stream firmware
 https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consensys V1.6.0 (64bit)
 ![image](https://github.com/jemmec/shimmering-unity/assets/41222625/d594ea29-d0db-4b0e-bc1c-b1c0effa3ee1)
 
@@ -148,7 +148,7 @@ https://shimmersensing.com/support/wireless-sensor-networks-download/ >> Consens
 
 2. Build the Class Libraries for ShimmerAPI in Visual Studio.
 
-3. Copy the correct version of the following `.dll` files into unity `/Plugins` folder, you may have to create the folder.
+3. Copy the correct version of the following `.dll` files into the unity `/Plugins` folder. You may have to create the folder.
     - `ShimmerAPI.dll` (netstandard2.0) \~that we just built\~
     - `Google.Protobuf.dll` (netstandard2.0)
     - `Grpc.Core.Api.dll` (netstandard2.0)
