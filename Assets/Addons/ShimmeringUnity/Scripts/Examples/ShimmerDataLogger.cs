@@ -84,7 +84,7 @@ namespace ShimmeringUnity
                 if (data == null)
                 {
                     signal.Value = "NULL";
-                    return;
+                    continue;
                 }
 
                 //Write data back into the signal for debugging
