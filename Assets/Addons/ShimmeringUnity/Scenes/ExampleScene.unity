@@ -263,15 +263,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85d8db2a161f8040bea5a05fc72652b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shimmerDeviceID: S01
+  devName: S01
   comPort: COM4
   samplingRate: 51.2
   enabledSensors: 4224
   accelerometerRange: 0
   gsrRange: 4
   gyroscopeRange: 0
-  magnetometerRange: 0
-  useInternalExpPower: 1
+  magnetometerRange: 1
+  enableLowPowerAccel: 0
+  enableLowPowerGyro: 0
+  enableLowPowerMag: 0
+  enableInternalExpPower: 1
   onDataRecieved:
     m_PersistentCalls:
       m_Calls: []
@@ -290,14 +293,6 @@ MonoBehaviour:
   shimmerDevice: {fileID: 817715987}
   signals:
   - name: 0
-    format: 0
-    unit: 0
-    value: 
-  - name: 1
-    format: 0
-    unit: 0
-    value: 
-  - name: 2
     format: 0
     unit: 0
     value: 
