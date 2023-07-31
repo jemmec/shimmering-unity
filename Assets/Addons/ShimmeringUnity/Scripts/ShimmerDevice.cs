@@ -174,8 +174,15 @@ namespace ShimmeringUnity
 
         public DataRecievedEvent OnDataRecieved => onDataRecieved;
 
+        [SerializeField]
+        [Tooltip("Device state changed event.")]
+        private StateChangeEvent onStateChanged = new StateChangeEvent();
+
+        public StateChangeEvent OnStateChanged => onStateChanged;
+
         //Private members
         private Queue<ObjectCluster> shimmerDataQueue = new Queue<ObjectCluster>();
+        private Queue<State> shimmerStateQueue = new Queue<State>();
         private Thread shimmerThread = null;
         private ShimmerBluetooth shimmer;
         private int connectionCount;
@@ -326,11 +333,13 @@ namespace ShimmeringUnity
                     {
                         Debug.Log("THREAD: Connected " + connectionCount);
                         CurrentState = State.Connected;
+                        shimmerStateQueue.Enqueue(CurrentState);
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_CONNECTING)
                     {
                         Debug.Log("THREAD: Connecting " + connectionCount);
                         CurrentState = State.Connecting;
+                        shimmerStateQueue.Enqueue(CurrentState);
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_NONE)
                     {
@@ -338,11 +347,13 @@ namespace ShimmeringUnity
                         //Remove event handler
                         shimmer.UICallback -= HandleEvent;
                         CurrentState = State.Disconnected;
+                        shimmerStateQueue.Enqueue(CurrentState);
                     }
                     else if (state == (int)ShimmerBluetooth.SHIMMER_STATE_STREAMING)
                     {
                         Debug.Log("THREAD: Streaming " + connectionCount);
                         CurrentState = State.Streaming;
+                        shimmerStateQueue.Enqueue(CurrentState);
                     }
                     break;
                 case (int)ShimmerBluetooth.ShimmerIdentifier.MSG_IDENTIFIER_NOTIFICATION_MESSAGE:
@@ -363,5 +374,11 @@ namespace ShimmeringUnity
     /// Custom unity event for capturing data from the shimmer device
     /// </summary>
     public class DataRecievedEvent : UnityEvent<ShimmerDevice, ObjectCluster> { }
+
+    [System.Serializable]
+    /// <summary>
+    /// Custom unity event for listening to state change on the shimmer device
+    /// </summary>
+    public class StateChangeEvent : UnityEvent<ShimmerDevice, ShimmerDevice.State> { }
 
 }
